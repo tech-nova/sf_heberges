@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,heberge,#ID_HEBERGE}|sinon_interdire_acces)]
+<BOUCLE_heberge(HEBERGES){id_heberge}{statut==.*}{si #ENV{exec}|=={heberge}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,heberge,#ID_HEBERGE})
+		[(#ID_HEBERGE|afficher_qui_edite{heberge}|non)
+			[(#URL_ECRIRE{heberge_edit,id_heberge=#ID_HEBERGE}|icone_verticale{<:heberge:icone_modifier_heberge:>,heberge,edit,right ajax preload})]
+		]
+		[(#ID_HEBERGE|afficher_qui_edite{heberge}|oui)
+			[(#URL_ECRIRE{heberge_edit,id_heberge=#ID_HEBERGE}|icone_verticale{#ID_HEBERGE|afficher_qui_edite{heberge},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM_DU_SITE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{heberge-24.png}|balise_img{heberge,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{heberge,#ID_HEBERGE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/heberge,id=#ID_HEBERGE,id_heberge=#ID_HEBERGE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,heberge,#ID_HEBERGE})
+	[(#ID_HEBERGE|afficher_qui_edite{heberge}|non)
+		[(#URL_ECRIRE{heberge_edit,id_heberge=#ID_HEBERGE}|icone_verticale{<:heberge:icone_modifier_heberge:>,heberge,edit,right ajax preload})]
+	]
+	[(#ID_HEBERGE|afficher_qui_edite{heberge}|oui)
+		[(#URL_ECRIRE{heberge_edit,id_heberge=#ID_HEBERGE}|icone_verticale{#ID_HEBERGE|afficher_qui_edite{heberge},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,heberge,id,#ID_HEBERGE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_heberge>
+[(#ENV**{exec}|=={heberge_edit}|?{#INCLURE{fond=prive/squelettes/contenu/heberge_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_heberge>

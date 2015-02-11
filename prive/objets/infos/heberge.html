@@ -1,0 +1,28 @@
+<BOUCLE_heberge(HEBERGES){id_heberge=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:heberge:titre_heberge:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_HEBERGE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{heberges,#ID_HEBERGE})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(HEBERGES){id_heberge}>
+	[(#VAL{redirect}
+		|generer_url_action{type=heberges&id=#ID_HEBERGE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,heberges,#ID_HEBERGE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=heberges&id=#ID_HEBERGE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_heberge>

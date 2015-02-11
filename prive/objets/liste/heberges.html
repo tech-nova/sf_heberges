@@ -1,0 +1,39 @@
+[(#SET{defaut_tri,#ARRAY{
+	nom_du_site,1, 
+	date,-1, 
+	id_heberge,1,
+	points,-1
+}})]<B_liste_heberges>
+#ANCRE_PAGINATION
+<div class="liste-objets heberges">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{heberge:info_1_heberge,heberge:info_nb_heberges}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='nom_du_site' scope='col'>[(#TRI{nom_du_site,<:heberge:champ_nom_du_site_label:>,ajax})]</th>
+			<th class='date' scope='col'>[(#TRI{date,<:date:>,ajax})]</th> 
+			<th class='id' scope='col'>[(#TRI{id_heberge,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_heberges(HEBERGES){id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom_du_site},#GET{defaut_tri}}{par nom_du_site}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{heberge-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{heberge,#ID_HEBERGE})]</td> 
+			<td class='nom_du_site principale'>[(#LOGO_HEBERGE|image_reduire{20,26})]<a href="[(#ID_HEBERGE|generer_url_entite{heberge})]" title="<:info_numero_abbreviation|attribut_html:> #ID_HEBERGE">[(#RANG). ]#NOM_DU_SITE</a></td>
+			<td class='date secondaire'>[(#DATE|affdate_jourcourt)]</td> 
+			<td class='id'>[(#AUTORISER{modifier,heberge,#ID_HEBERGE}|?{
+				<a href="[(#URL_ECRIRE{heberge_edit,id_heberge=#ID_HEBERGE})]">#ID_HEBERGE</a>,
+				#ID_HEBERGE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_heberges>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_heberges>[
+<div class="liste-objets heberges caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_heberges>

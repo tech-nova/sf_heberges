@@ -1,0 +1,79 @@
+<BOUCLE_heberge(HEBERGES){id_heberge}{statut?}>
+
+[<div class="champ contenu_nom_du_site">
+	<label><:heberge:champ_nom_du_site_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{nom_du_site} nom_du_site'>(#NOM_DU_SITE)</span>
+</div>]
+
+[<div class="champ contenu_url_du_site">
+	<label><:heberge:champ_url_du_site_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{url_du_site} url_du_site'>(#URL_DU_SITE)</span>
+</div>]
+
+[<div class="champ contenu_bio">
+	<label><:heberge:champ_bio_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{bio} bio'>(#BIO)</span>
+</div>]
+
+<div class="champ contenu_option_ftp">
+	<label><:heberge:champ_option_ftp_label:> : </label>
+	<span dir='#LANG_DIR' class='option_ftp'>[(#OPTION_FTP|?{Oui,Non})]</span>
+</div>
+
+<div class="champ contenu_valide_cgu">
+	<label><:heberge:champ_valide_cgu_label:> : </label>
+	<span dir='#LANG_DIR' class='num_tva'>
+		[(#VALIDE_CGU|=={oui}|?{<:heberge:cgu_validees:>,<strong><:heberge:cgu_non_validees:></strong>})]
+	</span>
+</div>
+
+<div class="contenu_descriptif" style="padding-bottom:1em">
+
+<div class="champ contenu_prenom">
+	<label><:heberge:champ_prenom_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{prenom} prenom'>#PRENOM</span>
+</div>
+
+<div class="champ contenu_nom">
+	<label><:heberge:champ_nom_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{nom} nom'>[(#NOM)]</span>
+</div>
+
+<div class="champ contenu_email">
+	<label><:heberge:champ_email_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{email} email'>#EMAIL</span>
+</div>
+
+<div class="champ contenu_adresse">
+	<label><:heberge:champ_adresse_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{adresse} adresse'>#ADRESSE</span>
+</div>
+
+<div class="champ contenu_code_postal">
+	<label><:heberge:champ_code_postal_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{code_postal} code_postal'>#CODE_POSTAL</span>
+</div>
+
+<div class="champ contenu_ville">
+	<label><:heberge:champ_ville_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{ville} villes'>#VILLE</span>
+</div>
+
+<div class="champ contenu_telephone">
+	<label><:heberge:champ_telephone_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{telephone} telephone'>#TELEPHONE</span>
+</div>
+
+<div class="champ contenu_siret">
+	<label><:heberge:champ_siret_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{siret} siret'>#SIRET</span>
+</div>
+
+<div class="champ contenu_num_tva">
+	<label><:heberge:champ_num_tva_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{num_tva} num_tva'>#NUM_TVA</span>
+</div>
+
+</div>
+
+</BOUCLE_heberge>

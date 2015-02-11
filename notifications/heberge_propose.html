@@ -1,0 +1,41 @@
+[(#HTTP_HEADER{Content-type: text/plain[; charset=(#CHARSET)]})]
+<BOUCLE_art(HEBERGES){id_heberge}{statut?}{tout}>
+[(#VAL{heberge:info_propose_1}|_T{#ARRAY{nom_site_spip,#NOM_SITE_SPIP,nom_du_site,#NOM_DU_SITE}}|nettoyer_titre_email)]
+
+<:heberge:info_propose_2:>
+
+[(#VAL{heberge:info_propose_3}|_T{#ARRAY{nom_du_site,#NOM_DU_SITE}})]
+<:heberge:info_propose_4:> [(#ID_HEBERGE|generer_url_entite{heberge,'','',0})]
+
+{{<:heberge:champ_option_ftp_label:> :}} [(#OPTION_FTP|?{Oui,Non})]
+
+[(#VALIDE_CGU|=={oui}|?{<:heberge:cgu_validees:>,<:heberge:cgu_non_validees:>})]
+
+[{{<:heberge:champ_nom_du_site_label:> :}} (#NOM_DU_SITE)]
+
+[{{<:heberge:champ_url_du_site_label:> :}} (#URL_DU_SITE)]
+
+[{{<:heberge:champ_bio_label:> :}} (#BIO)]
+
+-------
+
+[{{<:heberge:champ_prenom_label:> :}} (#PRENOM)]
+
+[{{<:heberge:champ_nom_label:> :}} (#NOM)]
+
+[{{<:heberge:champ_email_label:> :}} (#EMAIL)]
+
+[{{<:heberge:champ_adresse_label:> :}} (#ADRESSE)]
+
+[{{<:heberge:champ_code_postal_label:> :}} (#CODE_POSTAL)]
+
+[{{<:heberge:champ_ville_label:> :}} (#VILLE)]
+
+[{{<:heberge:champ_telephone_label:> :}} (#TELEPHONE)]
+
+[{{<:heberge:champ_siret_label:> :}} (#SIRET)]
+
+[{{<:heberge:champ_num_tva_label:> :}} (#NUM_TVA)]
+
+</BOUCLE_art>
+#FILTRE{supprimer_tags|filtrer_entites|trim}

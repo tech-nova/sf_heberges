@@ -1,0 +1,108 @@
+<style>
+#champ_adresse, #champ_bio {height:90px;}
+#formulaire-contact ul li {
+    list-style: outside none none;
+    margin-bottom: 10px;
+    text-align: left;
+}
+#formulaire-contact ul {
+	padding-left:0;
+	margin:12px;
+}
+#formulaire-contact input.text {
+	width:274px;
+}
+#formulaire-contact fieldset input.text {
+	width:254px;
+}
+#formulaire-contact li.editer_url_du_site {display:none;}
+#formulaire-contact div.choix {float:left;}
+#formulaire-contact ul#item div.choix label {width:auto;}
+#formulaire-contact fieldset {margin-top:20px;}
+#formulaire-contact .saisie_oui_non {padding-bottom:10px}
+</style>
+
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_heberge,nouveau}'>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok}|oui)[(#SESSION|oui)#ENV**{message_ok}][(#SESSION|non)<:heberge:longues_explications_apres_contact_creation:>]</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_heberge' value='#ENV{id_heberge}' />
+		<ul id="item">
+
+			<li class="editer editer_nom_du_site obligatoire saisie_input[ (#ENV**{erreurs}|table_valeur{nom_du_site}|oui)erreur]">
+				<label for="champ_nom_du_site"><:heberge:champ_nom_du_site_label:></label>
+				[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{nom_du_site})</span>]
+				<input type="text" required="required" id="champ_nom_du_site" class="text" value="#ENV{nom_du_site}" name="nom_du_site" style="width: 174px;"> .spipfactory.com
+			</li>
+
+			[(#SAISIE{input, url_du_site,
+				label=<:heberge:champ_url_du_site_label:>})]
+
+			[(#SAISIE{textarea, bio,
+				label=<:heberge:champ_bio_label:>})]
+
+ 			[(#SAISIE{oui_non, option_ftp,
+ 				label=<:heberge:champ_option_ftp_label:>})]
+
+		</ul>
+
+		<fieldset>
+			<legend>Informations de facturation</legend>
+		<ul id="item">
+
+			[(#SAISIE{input, prenom, obligatoire=oui,
+				label=<:heberge:champ_prenom_label:>})]
+
+			[(#SAISIE{input, nom, obligatoire=oui,
+				label=<:heberge:champ_nom_label:>})]
+
+			[(#SAISIE{email, email, obligatoire=oui,
+				label=<:heberge:champ_email_label:>})]
+
+			[(#SAISIE{textarea, adresse, obligatoire=oui,
+				label=<:heberge:champ_adresse_label:>})]
+
+			[(#SAISIE{input, code_postal, obligatoire=oui,
+				label=<:heberge:champ_code_postal_label:>})]
+
+			[(#SAISIE{input, ville, obligatoire=oui,
+				label=<:heberge:champ_ville_label:>})]
+
+			[(#SAISIE{input, telephone,
+				label=<:heberge:champ_telephone_label:>})]
+
+			[(#SAISIE{input, siret,
+				label=<:heberge:champ_siret_label:>})]
+
+			[(#SAISIE{input, num_tva,
+				label=<:heberge:champ_num_tva_label:>})]
+
+		</ul>
+		</fieldset>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+
+		<ul>
+			<li class="editer editer_valide_cgu obligatoire saisie_checkbox[ (#ENV**{erreurs}|table_valeur{valide_cgu}|oui)erreur]">
+				[(#SESSION|oui)<!-- label><:heberge:champ_valide_cgu_label:><span class="obligatoire">  (obligatoire)</span></label -->]
+				[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{valide_cgu})</span>]
+				<div class="choix choix_oui">
+					<input type="checkbox" required="required" value="oui" [(#ENV{valide_cgu}|oui)checked="checked"] id="champ_valide_cgu" class="checkbox" name="valide_cgu">
+					<label class="on" for="champ_valide_cgu"><:heberge:champ_valide_cgu_label2:></label>
+				</div>
+			</li>
+      <!-- Inscription a la liste (modif stéphane)-->
+      <li class='saisie_mailing_list'>
+      <label for="inscription_mailing_list"><br></label><br>
+				<input type="checkbox" name="inscri_ml_ok" value="oui" checked /><:heberge:inscription_mailing_list:>
+			</li>
+ 		</ul>
+
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>'
+    onclick="alert('Je rappelle que le coût annuel de l\'hébergement est de 18 Euros TTC, et que l\'option FTP est de 6 Euros TTC.')" /></p>  
+	</div></form>
+	]
+</div>

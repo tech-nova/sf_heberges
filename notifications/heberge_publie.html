@@ -1,0 +1,31 @@
+[(#HTTP_HEADER{Content-type: text/plain[; charset=(#CHARSET)]})]
+<BOUCLE_art(HEBERGES){id_heberge}{statut?}{tout}>
+[(#VAL{heberge:info_publie_1}|_T{#ARRAY{nom_site_spip,#NOM_SITE_SPIP,nom_du_site,#NOM_DU_SITE}}|nettoyer_titre_email)]
+
+<:heberge:info_publie:>
+
+[(#VAL{heberge:info_publie_01}|_T{#ARRAY{nom_du_site,#NOM_DU_SITE,connect_nom,#SESSION{nom}}})]
+
+[<:heberge:champ_nom_label:> : (#NOM)]
+
+[<:heberge:champ_prenom_label:> : (#PRENOM)]
+
+[<:heberge:champ_email_label:> : (#EMAIL)]
+
+[<:heberge:champ_adresse_label:> : (#ADRESSE)]
+
+[<:heberge:champ_nom_du_site_label:> : (#NOM_DU_SITE)]
+
+[<:heberge:champ_url_du_site_label:> : (#URL_DU_SITE)]
+
+[<:heberge:champ_bio_label:> : (#BIO)]
+
+[<:heberge:champ_telephone_label:> : (#TELEPHONE)]
+
+[<:heberge:champ_siret_label:> : (#SIRET)]
+
+[<:heberge:champ_num_tva_label:> : (#NUM_TVA)]
+
+[-> (#URL_DU_SITE|url_absolue)]
+</BOUCLE_art>
+#FILTRE{supprimer_tags|filtrer_entites|trim}

@@ -60,7 +60,6 @@ function formulaires_editer_heberge_identifier_dist($id_heberge='new', $retour='
  */
 function formulaires_editer_heberge_charger_dist($id_heberge='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('heberge',$id_heberge,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
-//var_dump($valeurs);
 	return $valeurs;
 }
 
@@ -126,7 +125,6 @@ function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', 
         
         spip_log("Inscription statut $statut_abo pour $mail_subscriber a la liste $mailinglist",'heberges');
    
-        // Si c'est int c'est une id donc une modif
 	if (is_int($id_heberge)) {
 		$row = sql_fetsel("statut, date, inscrit_liste", "spip_heberges", "id_heberge=$id_heberge");
 		$statut_ancien = $row['statut'];
@@ -139,7 +137,7 @@ function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', 
 
         
      	// envoi de l'inscription a la mailinglist
-        if($statut_abo=='on'){ //  || $id_heberge='new'
+        if($statut_abo=='on'){ //  || $id_heberge='new' ?
                 $liste_email = explode ("@", $mailinglist);
                 // abonnement ou desabonement : on rajoute -join ou -leave dans l'email de la liste
                 // http://www.list.org/mailman-member/node13.html

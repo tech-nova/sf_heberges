@@ -1,12 +1,5 @@
 # Heberges
 
-
-
-## PRIVE
-
-*   Suppression du form ajouté dans /prive/squeletes/contenus/heberges.html
-    *Cette vue sert uniquement a visualiser les résultat en base et pas a l'édition ou la création *
-
 ## SHEMA
 
 1.0.1
@@ -30,9 +23,7 @@
 
 -   EN COURS 2.0.3 : si c'est une modification de l'hébergé, savoir si le statut de l'abonnement a changé et faire en fonction,
     pour ne pas envoyer une demande d'abonnement a chaque fois qu'on fait une modification.
-    
--   $return  écrit en anglais et dans les fonctions spip en fr,
-    pourquoi appeler une variable `$return` aussi ?? et pas par le nom de la fonction de l'API objet qui est appelé `$editer_objet = editer_objet_traiter()`
+
     
 -   Inscription a d'autres type de listes : mailman, ezml, plugin newsletter
     cf : spip abomailman

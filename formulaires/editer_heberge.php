@@ -140,21 +140,19 @@ function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', 
         if($statut_abo=='on'){ //  || $id_heberge='new' ?
                 $liste_email = explode ("@", $mailinglist);
                 // abonnement ou desabonement : on rajoute -join ou -leave dans l'email de la liste
-                // http://www.list.org/mailman-member/node13.html
-                
+                // http://www.list.org/mailman-member/node13.html            
                 $dowhat = "-join@";
                 $dest = $liste_email[0]."$dowhat".$liste_email[1];
                 $subject = '';
                 $body =array(
                     'from'=>$mail_subscriber);
             
-                spip_log("Subcription subject : $subject",'heberges');
+                spip_log("Subscription subject : $subject",'heberges');
                 
                 // http://code.spip.net/autodoc/tree/ecrire/inc/envoyer_mail.php.html#function_inc_envoyer_mail_dist
                 $envoyer_mail = charger_fonction('envoyer_mail', 'inc');
                 
-                $envoyer_mail($dest, $subject, $body);
-                
+                $envoyer_mail($dest, $subject, $body);  
         }
         
         // Notifications

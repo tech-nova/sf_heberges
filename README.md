@@ -1,23 +1,25 @@
 # Heberges
 
-## SHEMA
+## SCHEMA
 
-1.0.1
-*   Ajout d'un champ a la table heberge : inscrit_liste
-*   Mise a jour du Shema dans /base/heberge.php et mise en place de l'update du shema dans heberge_administrations.php
 1.0.2
-*   Ajout du champ au champs éditables ^^
 
-## Config
+*   Ajout d'un champ a la table heberge : inscrit_liste
+*   Mise a jour du Schema dans /base/heberge.php et mise en place de l'update du schema dans heberge_administrations.php
+*   Ajout du champ au champs éditables
 
-*   Ajout d'une config pour indiquer la liste de diffusion pour les inscrits
+## Configuration
+
+*   liste de diffusion pour les inscrits mailman uniquement
+*   domaine de de la mutualisation 
 
 ## FORMULAIRES
 
 *   Formulaire d'édition d'un hébergé :
+
     	*   Ajout de la prise en charge de l'inscription en saisie oui_non
-*   Traitement :
-	*  envoie de l'abonnement via envoyer_mail()
+        
+        *   Traitement : envoie de l'abonnement via envoyer_mail()
 
 ## TODO
 

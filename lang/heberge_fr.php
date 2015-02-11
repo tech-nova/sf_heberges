@@ -26,6 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_valide_cgu_label2' => 'J\'accepte les <a target="_blank" href="http://spipfactory.com/Regles-d-utilisation">Règles d\'utilisation</a> et les <a target=""
 _blank" href="http://spipfactory.com/IMG/pdf/cgv_spipfactory_hebergement.pdf">CGV</a> de la plateforme spipfactory',
 	'champ_ville_label' => 'Ville',
+        'champ_inscrit_liste'=>'S\'inscrire à la liste @mailinglist@',
 	'cgu_validees' => 'Les CGU ont été validées',
 	'cgu_non_validees' => 'Les CGU n\'ont pas été validées', 
 
@@ -85,8 +86,6 @@ Dans l’idéal, indiquez toujours le nom de votre site dans votre message.<br>
 	'titre_heberges_rubrique' => 'Hébergements de la rubrique',
 	'titre_langue_heberge' => 'Langue de cet hébergement',
 	'titre_logo_heberge' => 'Logo de cet hébergement',
-	'tarif_hebergement_annee' => '18 Euros' ,
-	'tarif_option_ftp_annee' => '6 Euros' ,
   
   
   // Inscription a la mailling

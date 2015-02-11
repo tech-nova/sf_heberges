@@ -59,6 +59,7 @@ function heberges_declarer_tables_objets_sql($tables) {
 			"siret"              => "tinytext NOT NULL DEFAULT ''",
 			"num_tva"            => "tinytext NOT NULL DEFAULT ''",
 			"valide_cgu"         => "varchar(3) NOT NULL DEFAULT ''",
+                        "inscrit_liste"      => "varchar(3) NOT NULL DEFAULT ''",
 			"date"               => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'", 
 			"statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
 			"maj"                => "TIMESTAMP"
@@ -69,7 +70,7 @@ function heberges_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => "nom_du_site AS titre, '' AS lang",
 		'date' => "date",
-		'champs_editables'  => array('nom', 'prenom', 'email', 'adresse', 'option_ftp', 'code_postal', 'ville', 'nom_du_site', 'url_du_site', 'bio', 'telephone', 'siret', 'num_tva', 'valide_cgu'),
+		'champs_editables'  => array('nom', 'prenom', 'email', 'adresse', 'option_ftp', 'code_postal', 'ville', 'nom_du_site', 'url_du_site', 'bio', 'telephone', 'siret', 'num_tva', 'valide_cgu','inscrit_liste'),
 		'champs_versionnes' => array('nom', 'prenom', 'email', 'adresse', 'option_ftp', 'code_postal', 'ville', 'nom_du_site', 'url_du_site', 'bio', 'telephone', 'siret', 'num_tva', 'valide_cgu'),
 		'rechercher_champs' => array(),
 		'tables_jointures'  => array(),

@@ -10,7 +10,15 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<input type="hidden" name="_meta_casier" value="heberges" />
-		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+                [(#SAISIE{input, mailing_list,
+				label=<:heberges:cfg_mailinglist:>})]
+                                
+                 [(#SAISIE{input, host_domain,
+				label=<:heberges:cfg_host_domain:>})]
+		<p class="boutons">
+                    <span class="image_loading">&nbsp;</span>
+                    <input type="submit" class="submit" value="<:bouton_enregistrer:>" />
+                </p>
 	</div>
 	</form>
 </div>

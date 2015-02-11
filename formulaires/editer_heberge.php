@@ -60,6 +60,7 @@ function formulaires_editer_heberge_identifier_dist($id_heberge='new', $retour='
  */
 function formulaires_editer_heberge_charger_dist($id_heberge='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('heberge',$id_heberge,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+//var_dump($valeurs);
 	return $valeurs;
 }
 
@@ -86,7 +87,7 @@ function formulaires_editer_heberge_charger_dist($id_heberge='new', $retour='', 
  *     Tableau des erreurs
  */
 function formulaires_editer_heberge_verifier_dist($id_heberge='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
-
+	 
 	$champs_obligatoires = array('nom', 'prenom', 'email', 'adresse', 'code_postal', 'ville', 'nom_du_site','valide_cgu');
 	foreach ($champs_obligatoires as $champ) if (!is_array(_request($champ))) set_request($champ,trim(_request($champ)));
 	return formulaires_editer_objet_verifier('heberge',$id_heberge, $champs_obligatoires);
@@ -116,14 +117,49 @@ function formulaires_editer_heberge_verifier_dist($id_heberge='new', $retour='',
  *     Retours des traitements
  */
 function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
-	$statut_ancien = $date_ancienne = '';
+	
+        $statut_ancien = $date_ancienne = '';
+        
+        $mailinglist = lire_config('heberges/mailing_list');
+        $statut_abo = _request('inscrit_liste');
+        $mail_subscriber = _request('email');
+        
+        spip_log("Inscription statut $statut_abo pour $mail_subscriber a la liste $mailinglist",'heberges');
+   
+        // Si c'est int c'est une id donc une modif
 	if (is_int($id_heberge)) {
-		$row = sql_fetsel("statut, date", "spip_heberges", "id_heberge=$id_heberge");
+		$row = sql_fetsel("statut, date, inscrit_liste", "spip_heberges", "id_heberge=$id_heberge");
 		$statut_ancien = $row['statut'];
 		$date_ancienne = $row['date'];
+                $statut_abo_ancien = $row['inscrit_liste'];
 	}
+ 
+        
 	$return = formulaires_editer_objet_traiter('heberge',$id_heberge,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
-	// Notifications
+
+        
+     	// envoi de l'inscription a la mailinglist
+        if($statut_abo=='on'){ //  || $id_heberge='new'
+                $liste_email = explode ("@", $mailinglist);
+                // abonnement ou desabonement : on rajoute -join ou -leave dans l'email de la liste
+                // http://www.list.org/mailman-member/node13.html
+                
+                $dowhat = "-join@";
+                $dest = $liste_email[0]."$dowhat".$liste_email[1];
+                $subject = '';
+                $body =array(
+                    'from'=>$mail_subscriber);
+            
+                spip_log("Subcription subject : $subject",'heberges');
+                
+                // http://code.spip.net/autodoc/tree/ecrire/inc/envoyer_mail.php.html#function_inc_envoyer_mail_dist
+                $envoyer_mail = charger_fonction('envoyer_mail', 'inc');
+                
+                $envoyer_mail($dest, $subject, $body);
+                
+        }
+        
+        // Notifications
 	if (isset($return['id_heberge']) and $notifications = charger_fonction('notifications', 'inc')) {
 		$row = sql_fetsel("statut, date", "spip_heberges", "id_heberge=".sql_quote($return['id_heberge']));
 		$statut = $row['statut'];
@@ -132,29 +168,11 @@ function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', 
 			array('statut' => $statut, 'statut_ancien' => $statut_ancien, 'date'=>$date, 'date_ancienne' => $date_ancienne)
 		);
 	}
+        
 	return $return;
 
 }
 
-/****************************************************************************************\
- *  ICI ON ESSAYE DE FAIRE FONCTIONNER LA CASE A COCHER  POUR INSCRIPTION A LA MAILLING *
-\****************************************************************************************/
-
-	//envoi inscription mailinglist
-	if (is_array($desc)) {
-	$envoyer_mail = charger_fonction('envoyer_mail','inc');
-		if ($inscri_ml_ok == "oui") {
-		if (function_exists(lire_config))  { 
-		$inscri_ml_sujet = lire_config('caseacocher_ml/inscri_ml_sujet').$mail;
-		$inscri_ml_mail = lire_config('caseacocher_ml/inscri_ml_mail');
-		$from = $mail;
-		spip_log('envoi mailing list dest'.$inscri_ml_mail.' ');
-		spip_log('envoi mailing list subject'.$inscri_ml_sujet.' ');
-		if (!$envoyer_mail($inscri_ml_mail, $inscri_ml_sujet, $inscri_ml_msg, $from, $head))
-			$desc = _T('form_forum_probleme_mail');
-			}
-			}
-	}
 
 
 ?>

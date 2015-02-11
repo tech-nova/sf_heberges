@@ -35,7 +35,9 @@
 			<li class="editer editer_nom_du_site obligatoire saisie_input[ (#ENV**{erreurs}|table_valeur{nom_du_site}|oui)erreur]">
 				<label for="champ_nom_du_site"><:heberge:champ_nom_du_site_label:></label>
 				[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{nom_du_site})</span>]
-				<input type="text" required="required" id="champ_nom_du_site" class="text" value="#ENV{nom_du_site}" name="nom_du_site" style="width: 174px;"> .spipfactory.com
+				<input type="text" required="required" id="champ_nom_du_site" class="text" value="#ENV{nom_du_site}" name="nom_du_site" style="width: 174px;">
+                                        [.(#CONFIG{heberges/host_domain})]
+                                        
 			</li>
 
 			[(#SAISIE{input, url_du_site,
@@ -79,6 +81,10 @@
 
 			[(#SAISIE{input, num_tva,
 				label=<:heberge:champ_num_tva_label:>})]
+                        
+                        [(#SAISIE{oui_non, inscrit_liste,
+				label=[(#VAL{heberge:champ_inscrit_liste}|_T{#ARRAY{mailinglist,#CONFIG{heberges/mailing_list}}})]
+                                })]
 
 		</ul>
 		</fieldset>
@@ -94,15 +100,11 @@
 					<label class="on" for="champ_valide_cgu"><:heberge:champ_valide_cgu_label2:></label>
 				</div>
 			</li>
-      <!-- Inscription a la liste (modif stéphane)-->
-      <li class='saisie_mailing_list'>
-      <label for="inscription_mailing_list"><br></label><br>
-				<input type="checkbox" name="inscri_ml_ok" value="oui" checked /><:heberge:inscription_mailing_list:>
-			</li>
  		</ul>
 
-		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>'
-    onclick="alert('Je rappelle que le coût annuel de l\'hébergement est de 18 Euros TTC, et que l\'option FTP est de 6 Euros TTC.')" /></p>  
+		<p class="boutons">
+                    <input type='submit' class='submit' value='<:bouton_enregistrer:>' />
+                </p>  
 	</div></form>
 	]
 </div>

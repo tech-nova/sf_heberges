@@ -12,6 +12,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_exemple' => 'Exemple',
 	'cfg_exemple_explication' => 'Explication de cet exemple',
 	'cfg_titre_parametrages' => 'Paramétrages',
+        'cfg_mailinglist'=>'Mailing list',
+        'cfg_host_domain'	=> 'Domaine de la mutu',
+
 
 	// T
 	'titre_page_configurer_heberges' => 'Hébergés',

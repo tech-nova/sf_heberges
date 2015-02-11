@@ -1,26 +1,25 @@
 <paquet
-	prefix="heberges"
-	categorie="divers"
-	version="2.0.0"
-	etat="test"
-	compatibilite="[3.0.0;3.0.*]"
-	logo="prive/themes/spip/images/heberge-64.png"
-	documentation=""
-	schema="1.0.0" 
+    prefix="heberges"
+    categorie="divers"
+    version="2.0.3"
+    etat="test"
+    compatibilite="[3.0.1;3.1.*]"
+    logo="prive/themes/spip/images/heberge-64.png"
+    documentation=""
+    schema="1.0.2" 
 >
 
-	<nom>Hébergements</nom>
+    <nom>Hébergements</nom>
 
-	<auteur lien='http://tech-nova.fr'>Gilles</auteur>
+    <auteur lien='http://tech-nova.fr'>Gilles</auteur>
+    <licence>GNU/GPL</licence>
+    
+    <pipeline nom="autoriser" inclure="heberges_autorisations.php" /> 
+    <pipeline nom="declarer_tables_objets_sql" inclure="base/heberges.php" /> 
+    <pipeline nom="declarer_tables_interfaces" inclure="base/heberges.php" /> 
+    
+    <necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
 
-	<licence>GNU/GPL</licence>
-	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
-
-
-	<pipeline nom="autoriser" inclure="heberges_autorisations.php" /> 
-
-	<pipeline nom="declarer_tables_objets_sql" inclure="base/heberges.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/heberges.php" /> 
-
-	<menu nom="heberges" titre="heberge:titre_heberges" parent="menu_edition" icone="images/heberge-16.png" action="heberges" /> 
+    <menu nom="heberges" titre="heberge:titre_heberges" parent="menu_edition" icone="images/heberge-16.png" action="heberges" /> 
 </paquet>
+

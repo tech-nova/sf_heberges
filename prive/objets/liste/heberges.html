@@ -21,7 +21,9 @@
 	<BOUCLE_liste_heberges(HEBERGES){id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom_du_site},#GET{defaut_tri}}{par nom_du_site}{pagination #ENV{nb,10}}>
 		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
 			<td class='picto'>[(#CHEMIN_IMAGE{heberge-16.png}|balise_img)]</td>
-			<td class='statut'>[(#STATUT|puce_statut{heberge,#ID_HEBERGE})]</td> 
+			<td class='statut'>
+                            [(#STATUT|puce_statut{heberge,#ID_HEBERGE})]
+                        </td> 
 			<td class='nom_du_site principale'>[(#LOGO_HEBERGE|image_reduire{20,26})]<a href="[(#ID_HEBERGE|generer_url_entite{heberge})]" title="<:info_numero_abbreviation|attribut_html:> #ID_HEBERGE">[(#RANG). ]#NOM_DU_SITE</a></td>
 			<td class='date secondaire'>[(#DATE|affdate_jourcourt)]</td> 
 			<td class='id'>[(#AUTORISER{modifier,heberge,#ID_HEBERGE}|?{

@@ -6,30 +6,3 @@
 [(#AUTORISER{creer,heberge})
 	[(#URL_ECRIRE{heberge_edit,new=oui}|icone_verticale{<:heberge:icone_creer_heberge:>,heberge,new,right})]
 ]
-
-<!-- rajout de la case a cocher mailling -->
-<form method="post" action="#SELF">
-<div>[(#ENV{_cfg_}|form_hidden)]
-<fieldset>
-<legend><strong>Configuration Mailing list</strong></legend>
-
-<label for="sujet_inscription_mailinglist"><strong><:heberge:sujet_inscription_mailinglist:></strong></label><br/>
-<:heberge:sujet_inscription_mailinglist_explication:><br/>
-<input type="text" name="inscri_ml_sujet" id="inscri_ml_sujet" value="#ENV{inscri_ml_sujet,subscribe address=}" />
-</label>
-
-<br />
-<label for="mail_inscription_mailinglist"><strong><:mail_inscription_mailinglist:></strong></label><br/>
-<:heberge:mail_inscription_mailinglist_explication:><br/>
-<input type="text" name="inscri_ml_mail" id="inscri_ml_mail" value="#ENV{inscri_ml_mail,nomdelaliste-request@domaine.com}" />
-</label>
-
-</fieldset>
-</div>
-
-
-<div>
-<input type="submit" name="_cfg_ok" value="<:ok:>" class="fondo" />
-<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
-</div>
-</form>

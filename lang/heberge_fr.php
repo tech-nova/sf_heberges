@@ -27,6 +27,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 _blank" href="http://spipfactory.com/IMG/pdf/cgv_spipfactory_hebergement.pdf">CGV</a> de la plateforme spipfactory',
 	'champ_ville_label' => 'Ville',
         'champ_inscrit_liste'=>'S\'inscrire à la liste @mailinglist@',
+        'champ_valide_inscrit_liste_label'	=> 'Inscrit à la liste',
+
 	'cgu_validees' => 'Les CGU ont été validées',
 	'cgu_non_validees' => 'Les CGU n\'ont pas été validées', 
 
@@ -63,7 +65,10 @@ Dans l’idéal, indiquez toujours le nom de votre site dans votre message.<br>
 	'info_propose_1' => '[@nom_site_spip@] Propose : @nom_du_site@',
 	'info_propose_2' => 'Nouveau hébergement proposé',
 	'info_propose_3' => 'L’hébergement "@nom_du_site@" est proposé.',
-	'info_propose_4' => 'Il est disponible à l’adresse : ',   
+	'info_propose_4' => 'Il est disponible à l’adresse : ',
+        'inscrit_liste_oui'	=> 'Oui',
+        'inscrit_liste_non'	=> 'Non',
+
 
 	// L
 	'legend_informations_facturation' => 'Informations de facturation',

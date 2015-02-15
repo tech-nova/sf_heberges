@@ -118,43 +118,18 @@ function formulaires_editer_heberge_verifier_dist($id_heberge='new', $retour='',
 function formulaires_editer_heberge_traiter_dist($id_heberge='new', $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	
         $statut_ancien = $date_ancienne = '';
-        
-        $mailinglist = lire_config('heberges/mailing_list');
-        $statut_abo = _request('inscrit_liste');
-        $mail_subscriber = _request('email');
-        
-        spip_log("Inscription statut $statut_abo pour $mail_subscriber a la liste $mailinglist",'heberges');
+      
    
 	if (is_int($id_heberge)) {
-		$row = sql_fetsel("statut, date, inscrit_liste", "spip_heberges", "id_heberge=$id_heberge");
+		$row = sql_fetsel("statut, date", "spip_heberges", "id_heberge=$id_heberge");
 		$statut_ancien = $row['statut'];
 		$date_ancienne = $row['date'];
-                $statut_abo_ancien = $row['inscrit_liste'];
 	}
  
         
 	$return = formulaires_editer_objet_traiter('heberge',$id_heberge,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
 
-        
-     	// envoi de l'inscription a la mailinglist
-        if($statut_abo=='on'){ //  || $id_heberge='new' ?
-                $liste_email = explode ("@", $mailinglist);
-                // abonnement ou desabonement : on rajoute -join ou -leave dans l'email de la liste
-                // http://www.list.org/mailman-member/node13.html            
-                $dowhat = "-join@";
-                $dest = $liste_email[0]."$dowhat".$liste_email[1];
-                $subject = '';
-                $body =array(
-                    'from'=>$mail_subscriber);
-            
-                spip_log("Subscription subject : $subject",'heberges');
-                
-                // http://code.spip.net/autodoc/tree/ecrire/inc/envoyer_mail.php.html#function_inc_envoyer_mail_dist
-                $envoyer_mail = charger_fonction('envoyer_mail', 'inc');
-                
-                $envoyer_mail($dest, $subject, $body);  
-        }
-        
+               
         // Notifications
 	if (isset($return['id_heberge']) and $notifications = charger_fonction('notifications', 'inc')) {
 		$row = sql_fetsel("statut, date", "spip_heberges", "id_heberge=".sql_quote($return['id_heberge']));

@@ -33,7 +33,7 @@ function heberges_autoriser(){}
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_heberges_menu_dist($faire, $type, $id, $qui, $opt){
-	return true;
+	return autoriser('webmestre');
 } 
 
 
@@ -48,7 +48,7 @@ function autoriser_heberges_menu_dist($faire, $type, $id, $qui, $opt){
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_heberge_creer_dist($faire, $type, $id, $qui, $opt) {
-	return true; 
+	return autoriser('webmestre');
 }
 
 /**
@@ -62,7 +62,7 @@ function autoriser_heberge_creer_dist($faire, $type, $id, $qui, $opt) {
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_heberge_voir_dist($faire, $type, $id, $qui, $opt) {
-	return true;
+	return autoriser('webmestre');
 }
 
 /**
@@ -76,7 +76,7 @@ function autoriser_heberge_voir_dist($faire, $type, $id, $qui, $opt) {
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_heberge_modifier_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite'));
+	return autoriser('webmestre');
 }
 
 /**
@@ -90,7 +90,7 @@ function autoriser_heberge_modifier_dist($faire, $type, $id, $qui, $opt) {
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_heberge_supprimer_dist($faire, $type, $id, $qui, $opt) {
-	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+	return autoriser('webmestre');
 }
 
 

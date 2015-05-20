@@ -1,7 +1,7 @@
 <paquet
     prefix="heberges"
     categorie="divers"
-    version="2.0.4"
+    version="2.0.5"
     etat="test"
     compatibilite="[3.0.1;3.1.*]"
     logo="prive/themes/spip/images/heberge-64.png"
